@@ -2,7 +2,8 @@ import altair as alt
 from os import getcwd
 from os.path import join
 from pandas import DataFrame
-
+import sys
+print(sys.version)
 import streamlit as st
 from htbuilder import HtmlElement, div, br, hr, a, p, img, styles
 
@@ -14,6 +15,9 @@ def load_model(model,mdl_path,material):
     elif model == "Paderborn":
         from Paderborn.Paderborn import PaderbornModel
         mdl = PaderbornModel(mdl_path,material)
+    elif model == "ASU":
+        from ASU.ASU import ASUModel
+        mdl = ASUModel(mdl_path,material)
     return mdl
 
 @st.cache_resource        
@@ -203,13 +207,14 @@ def main():
     icon_folder = join(directory, "icons")
     # ------------------------------------------------------------------- Parameters init
     
-    models = ['Paderborn','Sydney']
+    models = ['Paderborn','Sydney',"ASU"]
     materials = ['3C90','3C92','3C94','3C95','3E6' ,
                  '3F4' ,'77'  ,'78'  ,'79'  ,'ML95S',
                  'N27' ,'N30' ,'N49' ,'N87' ,'T37']
     resolution_params = {
                 "Sydney": 128,
-                "Paderborn": 1024,    
+                "Paderborn": 1024,
+                "ASU": 1024,
             } # Model resolution 
     
     if 'shape_id' not in st.session_state:
