@@ -1,6 +1,7 @@
 # Project: MagNet Engine
 
-# Dependencies and package name 
+# Dependencies and package name
+setuptools
 altair==5.2.0
 htbuilder==0.6.2
 numpy==1.25.2
